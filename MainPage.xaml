@@ -1,0 +1,39 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.Maui.Controls"
+             x:Class="MauiApp1.MainPage"
+             Title="运行监控">
+    <Grid>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Frame x:Name="StatusFrame" BackgroundColor="Red" Padding="8">
+                <Label x:Name="StatusLabel" Text="未连接 (自动重连中...)" TextColor="White" HorizontalOptions="Center" FontAttributes="Bold"/>
+            </Frame>
+
+            <Label Text="通讯记录:" FontAttributes="Bold"/>
+            <Editor x:Name="LogEditor" HeightRequest="250" IsReadOnly="True" BackgroundColor="#F9F9F9" FontSize="11"/>
+
+            <Label Text="发送数值 (成功发送后自动+1):" FontSize="14" FontAttributes="Bold"/>
+            <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                <Button Text="－" Clicked="OnMinusClicked" WidthRequest="60" BackgroundColor="#E0E0E0" TextColor="Black"/>
+                <Entry x:Name="CounterEntry" Text="1" Keyboard="Numeric" WidthRequest="120" HorizontalTextAlignment="Center" Unfocused="OnCounterUnfocused"/>
+                <Button Text="＋" Clicked="OnPlusClicked" WidthRequest="60" BackgroundColor="#E0E0E0" TextColor="Black"/>
+            </HorizontalStackLayout>
+
+            <Button Text="📷 开始实时扫码" Clicked="OnStartScanClicked" HeightRequest="55" CornerRadius="28" FontSize="18" Margin="0,10,0,0"/>
+            <Button Text="清除日志" Clicked="OnClearLogClicked" BackgroundColor="Transparent" TextColor="Gray"/>
+        </VerticalStackLayout>
+
+        <Grid x:Name="ScannerOverlay" IsVisible="False" BackgroundColor="Black" ZIndex="999">
+            <zxing:CameraBarcodeReaderView x:Name="BarcodeReader" BarcodesDetected="OnBarcodesDetected" IsDetecting="False"/>
+
+            <HorizontalStackLayout VerticalOptions="Start" HorizontalOptions="End" Margin="20,50,20,0" Spacing="10">
+                <Label x:Name="TorchStatusLabel" Text="补光灯: 关" TextColor="White" VerticalOptions="Center"/>
+                <Switch x:Name="TorchSwitch" Toggled="OnTorchToggled" Visual="Material"/>
+            </HorizontalStackLayout>
+
+            <Button Text="❌ 取消关闭" VerticalOptions="End" Margin="30" Clicked="OnStopScanClicked" BackgroundColor="#80000000"/>
+
+            <Frame BorderColor="Cyan" BackgroundColor="Transparent" HeightRequest="220" WidthRequest="220" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Grid>
+    </Grid>
+</ContentPage>

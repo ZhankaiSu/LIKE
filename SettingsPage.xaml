@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.SettingsPage"
+             Title="参数设置">
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <!-- 仅保留网络配置 -->
+            <Frame BorderColor="#E0E0E0" Padding="15">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="网络配置" FontAttributes="Bold" FontSize="16"/>
+                    <Entry x:Name="IpEntry" Placeholder="服务器IP" TextChanged="SaveSettings"/>
+                    <Entry x:Name="PortEntry" Placeholder="端口" Keyboard="Numeric" TextChanged="SaveSettings"/>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
