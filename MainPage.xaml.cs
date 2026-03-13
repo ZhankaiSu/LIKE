@@ -27,12 +27,11 @@ public partial class MainPage : ContentPage
                 Formats = BarcodeFormat.QrCode | BarcodeFormat.Code128 | BarcodeFormat.Ean13,
                 AutoRotate = true,
                 Multiple = false,
-                TryHarder = true
-
+                TryHarder = true,
+                TryInverted = true
             };
-            // 如需设置摄像头分辨率和位置，请在 BarcodeReader 控件本身上设置
             BarcodeReader.CameraLocation = CameraLocation.Rear;
-            // BarcodeReader 没有公开 CameraResolution 属性，通常分辨率由平台自动选择
+            BarcodeReader.CaptureQuality = CaptureQuality.High;
         }
         StartAutoConnectLoop();
     }
